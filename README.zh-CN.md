@@ -1,6 +1,10 @@
 # OpenClaw Node for VS Code / Cursor
 
 <p align="center">
+  <img src="assets/icon.png" alt="OpenClaw VS Code" width="128" />
+</p>
+
+<p align="center">
   <strong>将你的 IDE 连接到 OpenClaw Gateway 作为 Node</strong><br>
   让 AI 助手通过 VS Code API 安全地读写和操作代码
 </p>
