@@ -1,0 +1,146 @@
+{
+  "name": "openclaw-node-vscode",
+  "displayName": "OpenClaw Node for VS Code",
+  "description": "Secure workspace bridge between OpenClaw Gateway and VS Code — file operations, search, and diagnostics via VS Code API sandbox.",
+  "version": "0.2.0",
+  "publisher": "xiaoyaner-home",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "openclaw.connect", "title": "OpenClaw: Connect" },
+      { "command": "openclaw.disconnect", "title": "OpenClaw: Disconnect" },
+      { "command": "openclaw.showLog", "title": "OpenClaw: Show Log" },
+      { "command": "openclaw.toggleReadOnly", "title": "OpenClaw: Toggle Read-Only" },
+      { "command": "openclaw.settings", "title": "OpenClaw: Settings" },
+      { "command": "openclaw.agentSetup", "title": "OpenClaw: Agent Setup" },
+      { "command": "openclaw.setup", "title": "OpenClaw: Setup Wizard" }
+    ],
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "openclaw-panel",
+          "title": "OpenClaw",
+          "icon": "$(telescope)"
+        }
+      ]
+    },
+    "views": {
+      "openclaw-panel": [
+        {
+          "type": "webview",
+          "id": "openclaw.activityView",
+          "name": "Activity"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "OpenClaw",
+      "properties": {
+        "openclaw.gatewayHost": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "OpenClaw Gateway host (IP or hostname)"
+        },
+        "openclaw.gatewayPort": {
+          "type": "number",
+          "default": 18789,
+          "description": "OpenClaw Gateway port"
+        },
+        "openclaw.gatewayToken": {
+          "type": "string",
+          "default": "",
+          "description": "Gateway authentication token"
+        },
+        "openclaw.gatewayTls": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use TLS (wss://) for Gateway connection"
+        },
+        "openclaw.autoConnect": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically connect on startup"
+        },
+        "openclaw.displayName": {
+          "type": "string",
+          "default": "VS Code",
+          "description": "Display name shown in Gateway node list"
+        },
+        "openclaw.readOnly": {
+          "type": "boolean",
+          "default": false,
+          "description": "Read-only mode — disallow file writes and deletes"
+        },
+        "openclaw.confirmWrites": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show confirmation dialog before file writes/deletes"
+        },
+        "openclaw.terminal.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Allow terminal command execution"
+        },
+        "openclaw.terminal.allowlist": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["git", "npm", "pnpm", "npx", "node", "tsc"],
+          "description": "Allowed terminal commands (only effective when terminal is enabled)"
+        },
+        "openclaw.commandTimeout": {
+          "type": "number",
+          "default": 90,
+          "description": "Default timeout (seconds) for VS Code API commands invoked by Gateway"
+        },
+        "openclaw.agent.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Cursor Agent CLI integration"
+        },
+        "openclaw.agent.cliPath": {
+          "type": "string",
+          "default": "agent",
+          "description": "Path to Cursor Agent CLI binary"
+        },
+        "openclaw.agent.defaultMode": {
+          "type": "string",
+          "default": "agent",
+          "enum": ["agent", "plan", "ask"],
+          "description": "Default agent mode (agent=full, plan=design first, ask=read-only)"
+        },
+        "openclaw.agent.defaultModel": {
+          "type": "string",
+          "default": "",
+          "description": "Default model for agent (empty = auto-select)"
+        },
+        "openclaw.agent.timeoutMs": {
+          "type": "number",
+          "default": 300000,
+          "description": "Agent task timeout in milliseconds (default: 5 min)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "watch": "npm run build -- --watch",
+    "package": "vsce package",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.5.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
