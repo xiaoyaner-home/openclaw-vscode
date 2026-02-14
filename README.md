@@ -21,6 +21,10 @@
 
 ---
 
+<p align="center">
+  <img src="assets/demo.gif" alt="Demo" width="640" />
+</p>
+
 ## What is this?
 
 This extension turns your VS Code or Cursor editor into an [OpenClaw](https://github.com/openclaw/openclaw) **Node** — a remote-controllable endpoint that exposes IDE capabilities through the Node protocol.
@@ -37,7 +41,7 @@ All operations go through the VS Code Extension API sandbox — **no raw shell a
 
 ## Features
 
-### 37+ IDE Commands
+### 40+ IDE Commands
 Full coverage of the development workflow:
 
 | Category | Commands |
@@ -58,12 +62,16 @@ Every operation from your AI assistant appears in a bottom panel with:
 - Duration and status tracking
 - Parameter and result details (expandable)
 
+<img src="assets/activity-panel.png" alt="Activity Panel" width="600" />
+
 ### Setup Wizard
 Guided 4-step setup:
 1. **Gateway Connection** — host, port, token
 2. **Security** — read-only mode, write confirmation
 3. **Terminal** — enable/disable, command whitelist
 4. **Agent** — Cursor CLI install, login, model selection
+
+<img src="assets/setup-wizard.png" alt="Setup Wizard" width="600" />
 
 ### Cursor Agent CLI Integration
 Delegate coding tasks through three modes:
@@ -274,7 +282,7 @@ npm run watch
 ```
 Extension Host (VS Code/Cursor)
   ├── GatewayClient (WebSocket)     → OpenClaw Gateway
-  ├── CommandRegistry (37 commands) → VS Code Extension API
+  ├── CommandRegistry (40+ commands) → VS Code Extension API
   ├── ActivityPanel (operation log)  → Bottom panel view
   ├── SecurityGuard (path/cmd validation)
   └── AgentBridge (Cursor CLI)      → Cursor Agent CLI

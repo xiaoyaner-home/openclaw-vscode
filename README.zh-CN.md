@@ -21,6 +21,10 @@
 
 ---
 
+<p align="center">
+  <img src="assets/demo.gif" alt="Demo" width="640" />
+</p>
+
 ## 这是什么？
 
 这个扩展将你的 VS Code 或 Cursor 编辑器变成一个 [OpenClaw](https://github.com/openclaw/openclaw) **Node**——一个可远程控制的端点，通过 Node 协议暴露 IDE 能力。
@@ -37,7 +41,7 @@
 
 ## 功能特性
 
-### 37+ IDE 命令
+### 40+ IDE 命令
 
 覆盖完整的开发工作流：
 
