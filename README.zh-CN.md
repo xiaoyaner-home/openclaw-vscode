@@ -58,8 +58,12 @@
 ### Activity 面板
 AI 助手的每个操作都会显示在底部面板中，包含意图描述、耗时和状态。
 
+<img src="assets/activity-panel.png" alt="Activity 面板" width="600" />
+
 ### 引导式设置向导
 4 步完成配置：Gateway 连接 → 安全设置 → 终端权限 → Agent 集成
+
+<img src="assets/setup-wizard.png" alt="设置向导" width="600" />
 
 ### Cursor Agent CLI 集成
 三种模式委派编码任务：
